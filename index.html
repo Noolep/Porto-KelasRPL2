@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XI RPL 2 - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f0f11', // Latar belakang utama yang sangat gelap
+                        darkCard: '#1a1a1d', // Warna kartu/elemen
+                        neonRed: '#ff2a2a', // Merah neon
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-gray-200 font-sans antialiased overflow-x-hidden">
+
+    <header class="fixed w-full top-0 z-50 bg-darkBg/80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-wider text-white flex items-center gap-2">
+                <span class="text-neonRed">&lt;/&gt;</span> XI-RPL 2
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wide">
+                <a href="#home" class="hover:text-neonRed transition-colors duration-300">Home</a>
+                <a href="#mentor" class="hover:text-neonRed transition-colors duration-300">Teacher</a>
+                <a href="#student" class="hover:text-neonRed transition-colors duration-300">Student</a>
+                <a href="#album" class="hover:text-neonRed transition-colors duration-300">Album</a>
+            </nav>
+            
+            <div>
+                <button class="p-2 rounded-full border border-gray-700 hover:border-neonRed hover:text-neonRed hover:shadow-[0_0_10px_#ff2a2a] transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neonRed/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 text-center z-10">
+            
+            <div class="mb-8 flex justify-center">
+                <div class="w-40 h-40 md:w-56 md:h-56 bg-darkCard border-2 border-neonRed rounded-full shadow-[0_0_40px_rgba(255,42,42,0.4)] flex items-center justify-center overflow-hidden relative group">
+                    <img src="https://via.placeholder.com/250/1a1a1d/ff2a2a?text=LOGO+KELAS" alt="Logo XI RPL 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">
+                WE ARE <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonRed to-red-400 drop-shadow-[0_0_15px_rgba(255,42,42,0.8)]">
+                    XI RPL 2
+                </span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+                Tempat di mana baris kode bertemu dengan kreativitas tanpa batas. <br>
+                Selamat datang di markas digital kelas XI RPL 2.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 border-t border-gray-800 pt-10">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-neonRed drop-shadow-[0_0_8px_#ff2a2a]">32+</h2>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mt-1">Students</p>
+                </div>
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-neonRed drop-shadow-[0_0_8px_#ff2a2a]">15+</h2>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mt-1">Projects</p>
+                </div>
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-neonRed drop-shadow-[0_0_8px_#ff2a2a]">1</h2>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mt-1">Vision</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentor" class="py-20 bg-darkBg">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-darkCard border border-gray-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-neonRed shadow-[0_0_15px_#ff2a2a]"></div>
+                
+                <div class="w-48 h-48 shrink-0 rounded-2xl overflow-hidden border-2 border-gray-700">
+                    <img src="https://via.placeholder.com/200" alt="Mentor" class="w-full h-full object-cover">
+                </div>
+                
+                <div>
+                    <span class="bg-neonRed/10 text-neonRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Our Mentor</span>
+                    <h2 class="text-3xl font-bold text-white mt-4 mb-2">Nama Guru Pembimbing, S.Pd.</h2>
+                    <p class="text-gray-400 italic mb-4">
+                        "Baris kode mungkin rumit, tapi masa depan kalian harus lebih rapi dari sintaks yang paling sempurna. Tetap solid, XI RPL 2!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="student" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4">Anggota Kelas</h2>
+                <p class="text-gray-400">Mengenal 32 pejuang masa depan XI RPL 2</p>
+                
+                <div class="mt-8 max-w-md mx-auto relative">
+                    <input type="text" placeholder="Cari nama temanmu..." class="w-full bg-darkCard border border-gray-700 text-white rounded-full py-3 px-6 focus:outline-none focus:border-neonRed focus:shadow-[0_0_15px_rgba(255,42,42,0.3)] transition-all">
+                    <svg class="w-5 h-5 absolute right-4 top-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="https://via.placeholder.com/150" alt="Siswa" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Nama Siswa</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Role / Jabatan</p>
+                </div>
+                
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors"></div>
+                    <h3 class="font-bold text-white text-lg">Ricard</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Full Stack Developer</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="album" class="py-20 bg-darkBg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 uppercase tracking-widest">
+                    Class <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonRed to-red-600">Album</span>
+                </h2>
+                <p class="text-gray-400">Kumpulan memori berharga XI RPL 2</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="group relative overflow-hidden rounded-xl h-64 border border-gray-800">
+                    <img src="https://via.placeholder.com/400x300" alt="Moment 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-bold">Momen Pameran</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl h-64 border border-gray-800">
+                    <img src="https://via.placeholder.com/400x300" alt="Moment 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="group relative overflow-hidden rounded-xl h-64 border border-gray-800">
+                    <img src="https://via.placeholder.com/400x300" alt="Moment 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-800 bg-darkBg py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 <span class="text-neonRed font-bold">Ricard</span>. Crafted with code and logic.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
