@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+v<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -20,27 +20,21 @@
     </script>
     
     <style>
-        /* ==========================================
-           Hujan Teks Matrix (Sekarang Fokus di Foto)
-           ========================================== */
         #hujanTeks {
             position: absolute;
             top: 50%;
             left: 50%;
-            /* Didorong sedikit ke belakang foto menggunakan translateZ */
             transform: translate(-50%, -50%) translateZ(-20px); 
-            width: 450px; /* Lebar area aura hujan */
-            height: 450px; /* Tinggi area aura hujan */
-            z-index: 0; /* Di belakang foto dan cincin */
+            width: 450px;
+            height: 450px;
+            z-index: 0;
             pointer-events: none; 
             opacity: 0.9;
             
-            /* Trik Keren: Membuat pinggiran kanvas memudar halus ke background hitam */
             -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
             mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
         }
 
-        /* 3D Pilar Teks & Area Foto */
         .scene {
             perspective: 800px;
             display: flex;
@@ -56,9 +50,9 @@
 
         .person-img {
             position: relative;
-            height: 500px; /* Ukuran gambar yang tadi kita bahas */
+            height: 500px;
             object-fit: contain;
-            z-index: 2; /* Foto Paling Depan */
+            z-index: 2;
             filter: drop-shadow(0 0 20px rgba(255, 42, 42, 0.4));
         }
 
@@ -162,11 +156,8 @@
                 </div>
             </div>
 
-            <!-- Objek Foto, Pilar Putar, & KANVAS HUJAN DIPINDAH KE SINI -->
-            <div class="scene relative z-10">
                 <div class="wrapper-3d">
                     
-                    <!-- Kanvas Hujan sekarang cuma sebesar aura di belakang foto -->
                     <canvas id="hujanTeks"></canvas>
                     
                     <img src="Test.png" alt="Objek Utama" class="person-img" onerror="this.src='https://via.placeholder.com/300x400/1a1a1d/ff2a2a?text=Foto+3D'">
@@ -177,7 +168,6 @@
         </div>
     </section>
 
-    <!-- SECTION MENTOR -->
     <section id="mentor" class="py-20 bg-darkBg border-t border-gray-900">
         <div class="container mx-auto px-6 max-w-4xl">
             <div class="bg-darkCard border border-gray-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden">
@@ -196,7 +186,6 @@
         </div>
     </section>
 
-    <!-- SECTION STUDENT -->
     <section id="student" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
@@ -211,32 +200,255 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="studentGrid">
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="0">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="Siswa/NamaSiswa/image.png" alt="Siswa" class="w-full h-full object-cover">
+                        <img src="Siswa/Abdullah/image.png" alt="Abdullah" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-bold text-white text-lg">ASUUU</h3>
-                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Raja HELLO WORLD</p>
+                    <h3 class="font-bold text-white text-lg">Abdullah</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
                 
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="1">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="Siswa/Ricard/photo.jpg" alt="Ricard" class="w-full h-full object-cover">
+                        <img src="Siswa/Rofiq/photo.jpg" alt="Rofiq" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-bold text-white text-lg">Ricard</h3>
-                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Full Stack Developer</p>
+                    <h3 class="font-bold text-white text-lg">Rofiq</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
 
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Akmal/photo.jpg" alt="Akmal" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Akmal</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Al_Qonisa/photo.jpg" alt="Al_Qonisa" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Al Qonisa</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Alwi/photo.jpg" alt="Alwi" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Alwi</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Anin/photo.jpg" alt="Anin" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Anin</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Asih/photo.jpg" alt="Asih" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Asih</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
                         <img src="Siswa/David/photo.jpg" alt="David" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-bold text-white text-lg">David Prasetya Salim</h3>
-                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Game Developer</p>
+                    <h3 class="font-bold text-white text-lg">David</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Dehan/photo.jpg" alt="Dehan" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Dehan</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Desika/photo.jpg" alt="Desika" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Desika</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Hani/photo.jpg" alt="Hani" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Hani</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Riana/photo.jpg" alt="Riana" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Riana</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Kaniyah/photo.jpg" alt="Kaniyah" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Kaniyah</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Laela/photo.jpg" alt="Laela" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Laela</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Lulu/photo.jpg" alt="Lulu" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Lulu</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Natalia/photo.jpg" alt="Natalia" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Natalia</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Nia/photo.jpg" alt="Nia" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Nia</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Niha/photo.jpg" alt="Niha" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Niha</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Nikita/photo.jpg" alt="Nikita" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Nikita</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Nova/photo.jpg" alt="Nova" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Nova</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Rohman/photo.jpg" alt="Rohman" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Rohman</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Putri/photo.jpg" alt="Putri" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Putri</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Ricard/photo.jpg" alt="Ricard" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Ricard</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Risna/photo.jpg" alt="Risna" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Risna</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Milya/photo.jpg" alt="Milya" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Milya</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Safa/photo.jpg" alt="Safa" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Safa</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Sandy/photo.jpg" alt="Sandy" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Sandy</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Soofi/photo.jpg" alt="Soofi" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Soofi</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Tomi/photo.jpg" alt="Tomi" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Tomi</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Vega/photo.jpg" alt="Vega" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Vega</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Wawa/photo.jpg" alt="Wawa" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Wawa</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Witri/photo.jpg" alt="Witri" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Witri</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Wiwi/photo.jpg" alt="Wiwi" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Wiwi</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Yolland/photo.jpg" alt="Yolland" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Yolland</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                </div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Zulfa/photo.jpg" alt="Zulfa" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Zulfa</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION ALBUM -->
     <section id="album" class="py-20 bg-darkBg border-t border-gray-900">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -262,7 +474,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="border-t border-gray-800 bg-darkBg py-8">
         <div class="container mx-auto px-6 text-center">
             <p class="text-gray-500 text-sm">
@@ -271,7 +482,6 @@
         </div>
     </footer>
 
-    <!-- Student Modal -->
     <div id="studentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
         <div class="bg-darkCard border border-gray-800 rounded-2xl max-w-md w-full p-8 relative shadow-2xl">
             <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-neonRed transition-colors">
@@ -297,47 +507,52 @@
         </div>
     </div>
 
-    <!-- SEMUA SCRIPT JS -->
     <script>
-        // ------------------------------------
-        // 1. DATA SISWA & MODAL
-        // ------------------------------------
         const students = [
-            {
-                name: "ASU",
-                role: "Raja Hello World",
-                image: "Siswa/NamaSiswa/image.png",
-                bio: "01010101000010101010101010.",
-                instagram: "https://instagram.com/Sfx",
-                tiktok: "",
-                audio: "Siswa/NamaSiswa/music.mp3"
-            },
-            {
-                name: "Ricard",
-                role: "Full Stack Developer",
-                image: "Siswa/Ricard/photo.jpg",
-                bio: "Bio belum diisi.",
-                instagram: "",
-                tiktok: "",
-                audio: "Siswa/Ricard/music.mp3"
-            },
-            {
-                name: "David Prasetya Salim",
-                role: "Game Developer",
-                image: "Siswa/David/photo.jpg",
-                bio: "Bio belum diisi.",
-                instagram: "",
-                tiktok: "",
-                audio: "Siswa/David/music.mp3"
-            }
+            { name: "Abdullah",  role: "Siswa", image: "Siswa/Abdullah/image.png",    bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Abdullah/music.mp3" },
+            { name: "Rofiq",     role: "Siswa", image: "Siswa/Rofiq/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Rofiq/music.mp3" },
+            { name: "Akmal",     role: "Siswa", image: "Siswa/Akmal/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Akmal/music.mp3" },
+            { name: "Al Qonisa", role: "Siswa", image: "Siswa/Al_Qonisa/photo.jpg",   bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Al_Qonisa/music.mp3" },
+            { name: "Alwi",      role: "Siswa", image: "Siswa/Alwi/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Alwi/music.mp3" },
+            { name: "Anin",      role: "Siswa", image: "Siswa/Anin/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Anin/music.mp3" },
+            { name: "Asih",      role: "Siswa", image: "Siswa/Asih/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Asih/music.mp3" },
+            { name: "David",     role: "Siswa", image: "Siswa/David/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/David/music.mp3" },
+            { name: "Dehan",     role: "Siswa", image: "Siswa/Dehan/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Dehan/music.mp3" },
+            { name: "Desika",    role: "Siswa", image: "Siswa/Desika/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Desika/music.mp3" },
+            { name: "Hani",      role: "Siswa", image: "Siswa/Hani/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Hani/music.mp3" },
+            { name: "Riana",     role: "Siswa", image: "Siswa/Riana/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Riana/music.mp3" },
+            { name: "Kaniyah",   role: "Siswa", image: "Siswa/Kaniyah/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Kaniyah/music.mp3" },
+            { name: "Laela",     role: "Siswa", image: "Siswa/Laela/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Laela/music.mp3" },
+            { name: "Lulu",      role: "Siswa", image: "Siswa/Lulu/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Lulu/music.mp3" },
+            { name: "Natalia",   role: "Siswa", image: "Siswa/Natalia/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Natalia/music.mp3" },
+            { name: "Nia",       role: "Siswa", image: "Siswa/Nia/photo.jpg",         bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Nia/music.mp3" },
+            { name: "Niha",      role: "Siswa", image: "Siswa/Niha/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Niha/music.mp3" },
+            { name: "Nikita",    role: "Siswa", image: "Siswa/Nikita/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Nikita/music.mp3" },
+            { name: "Nova",      role: "Siswa", image: "Siswa/Nova/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Nova/music.mp3" },
+            { name: "Rohman",    role: "Siswa", image: "Siswa/Rohman/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Rohman/music.mp3" },
+            { name: "Putri",     role: "Siswa", image: "Siswa/Putri/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Putri/music.mp3" },
+            { name: "Ricard",    role: "Siswa", image: "Siswa/Ricard/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Ricard/music.mp3" },
+            { name: "Risna",     role: "Siswa", image: "Siswa/Risna/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Risna/music.mp3" },
+            { name: "Milya",     role: "Siswa", image: "Siswa/Milya/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Milya/music.mp3" },
+            { name: "Safa",      role: "Siswa", image: "Siswa/Safa/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Safa/music.mp3" },
+            { name: "Sandy",     role: "Siswa", image: "Siswa/Sandy/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Sandy/music.mp3" },
+            { name: "Soofi",     role: "Siswa", image: "Siswa/Soofi/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Soofi/music.mp3" },
+            { name: "Tomi",      role: "Siswa", image: "Siswa/Tomi/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Tomi/music.mp3" },
+            { name: "Vega",      role: "Siswa", image: "Siswa/Vega/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Vega/music.mp3" },
+            { name: "Wawa",      role: "Siswa", image: "Siswa/Wawa/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Wawa/music.mp3" },
+            { name: "Witri",     role: "Siswa", image: "Siswa/Witri/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Witri/music.mp3" },
+            { name: "Wiwi",      role: "Siswa", image: "Siswa/Wiwi/photo.jpg",        bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Wiwi/music.mp3" },
+            { name: "Yolland",   role: "Siswa", image: "Siswa/Yolland/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Yolland/music.mp3" },
+            { name: "Zulfa",     role: "Siswa", image: "Siswa/Zulfa/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Zulfa/music.mp3" }
         ];
 
         let currentAudio = null;
 
         document.querySelectorAll('.student-card').forEach(card => {
             card.addEventListener('click', function() {
-                const studentIndex = parseInt(this.dataset.student);
-                const student = students[studentIndex];
+                const cardName = this.querySelector('h3').textContent.trim();
+                const student = students.find(s => s.name === cardName);
+                if (!student) return;
                 
                 if (currentAudio) {
                     currentAudio.pause();
@@ -387,9 +602,6 @@
         });
 
 
-        // ------------------------------------
-        // 2. SCRIPT TEKS 3D BERPUTAR
-        // ------------------------------------
         const textToSpinPillar = "SOFTWARE ENGINEERING • XI RPL 2 • DIGITAL CREATORS • "; 
         const ring = document.getElementById('ring');
         const radius = 220; 
@@ -410,14 +622,9 @@
             ring.appendChild(span);
         });
 
-
-        // ------------------------------------
-        // 3. SCRIPT EFEK HUJAN MATRIX (UKURAN TETAP)
-        // ------------------------------------
         const canvas = document.getElementById('hujanTeks');
         const ctx = canvas.getContext('2d');
 
-        // Ukuran di-fix untuk menjadi aura di belakang gambar
         canvas.width = 500;
         canvas.height = 500;
 
@@ -429,12 +636,10 @@
         
         const drops = [];
         for (let x = 0; x < columns; x++) {
-            // Dibuat random posisinya sejak awal agar tidak turun serentak
             drops[x] = Math.random() * -50; 
         }
 
         function drawMatrixHujan() {
-            // Background warna gelap dengan transparansi (efek ekor/trail)
             ctx.fillStyle = 'rgba(15, 15, 17, 0.15)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#ff2a2a'; 
@@ -444,7 +649,6 @@
                 const text = charsHujan[Math.floor(Math.random() * charsHujan.length)];
                 ctx.fillText(text, i * fontSizeHujan, drops[i] * fontSizeHujan);
 
-                // Kembalikan ke atas saat sampai bawah
                 if (drops[i] * fontSizeHujan > canvas.height && Math.random() > 0.95) {
                     drops[i] = 0;
                 }
@@ -454,10 +658,6 @@
 
         setInterval(drawMatrixHujan, 33);
 
-
-        // ------------------------------------
-        // 4. SCRIPT EFEK SCROLL TEKS RAKSASA (PARALLAX)
-        // ------------------------------------
         window.addEventListener('scroll', () => {
             const wrapper = document.getElementById('section-3d-wrapper');
             const bgLeft = document.getElementById('bg-text-left');
@@ -467,7 +667,6 @@
                 const rect = wrapper.getBoundingClientRect();
                 const centerOffset = (window.innerHeight / 2) - (rect.top + (rect.height / 2));
                 
-                // Teks atas gerak ke kanan, teks bawah gerak ke kiri
                 bgLeft.style.transform = `translateX(${centerOffset * 0.8}px)`;
                 bgRight.style.transform = `translateX(${-centerOffset * 0.8}px)`;
             }
