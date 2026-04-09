@@ -10,14 +10,87 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#0f0f11', // Latar belakang utama yang sangat gelap
-                        darkCard: '#1a1a1d', // Warna kartu/elemen
-                        neonRed: '#ff2a2a', // Merah neon
+                        darkBg: '#0f0f11', 
+                        darkCard: '#1a1a1d', 
+                        neonRed: '#ff2a2a', 
                     }
                 }
             }
         }
     </script>
+    
+    <style>
+        /* ==========================================
+           Hujan Teks Matrix (Sekarang Fokus di Foto)
+           ========================================== */
+        #hujanTeks {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Didorong sedikit ke belakang foto menggunakan translateZ */
+            transform: translate(-50%, -50%) translateZ(-20px); 
+            width: 450px; /* Lebar area aura hujan */
+            height: 450px; /* Tinggi area aura hujan */
+            z-index: 0; /* Di belakang foto dan cincin */
+            pointer-events: none; 
+            opacity: 0.9;
+            
+            /* Trik Keren: Membuat pinggiran kanvas memudar halus ke background hitam */
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
+        }
+
+        /* 3D Pilar Teks & Area Foto */
+        .scene {
+            perspective: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-5deg); 
+        }
+
+        .person-img {
+            position: relative;
+            height: 500px; /* Ukuran gambar yang tadi kita bahas */
+            object-fit: contain;
+            z-index: 2; /* Foto Paling Depan */
+            filter: drop-shadow(0 0 20px rgba(255, 42, 42, 0.4));
+        }
+
+        .text-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+            animation: spinRing 15s linear infinite;
+            z-index: 1; /* Pilar putar di belakang foto, di depan hujan */
+            user-select: none; 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            pointer-events: none; 
+        }
+
+        @keyframes spinRing {
+            0% { transform: translate(-50%, -50%) rotateY(0deg); }
+            100% { transform: translate(-50%, -50%) rotateY(360deg); }
+        }
+
+        .char-3d {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ff2a2a; 
+            text-shadow: 0 0 10px #ff2a2a;
+            white-space: pre;
+        }
+    </style>
 </head>
 <body class="bg-darkBg text-gray-200 font-sans antialiased overflow-x-hidden">
 
@@ -42,11 +115,10 @@
         </div>
     </header>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+    <section id="home" class="relative min-h-screen pt-24 pb-12 overflow-x-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neonRed/20 blur-[100px] rounded-full pointer-events-none"></div>
 
-        <div class="container mx-auto px-6 text-center z-10">
-            
+        <div class="container mx-auto px-6 text-center z-10 relative">
             <div class="mb-8 flex justify-center">
                 <div class="w-40 h-40 md:w-56 md:h-56 bg-darkCard border-2 border-neonRed rounded-full shadow-[0_0_40px_rgba(255,42,42,0.4)] flex items-center justify-center overflow-hidden relative group">
                     <img src="https://via.placeholder.com/250/1a1a1d/ff2a2a?text=LOGO+KELAS" alt="Logo XI RPL 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -78,18 +150,41 @@
                     <p class="text-sm text-gray-500 uppercase tracking-widest mt-1">Vision</p>
                 </div>
             </div>
+        </div> 
+
+        <div class="relative w-full py-20 mt-10 flex justify-center items-center overflow-hidden" id="section-3d-wrapper">
+            <div class="absolute inset-0 flex flex-col justify-center items-center z-0 pointer-events-none opacity-20 w-full">
+                <div id="bg-text-left" class="h-1/2 flex items-center text-[10vw] font-black text-neonRed whitespace-nowrap uppercase transition-transform duration-75 ease-out">
+                    SOFTWARE ENGINEERING • REKAYASA PERANGKAT LUNAK • SOFTWARE ENGINEERING • REKAYASA PERANGKAT LUNAK • SOFTWARE ENGINEERING • REKAYASA PERANGKAT LUNAK • SOFTWARE ENGINEERING
+                </div>
+                <div id="bg-text-right" class="h-1/2 flex items-center text-[10vw] font-black text-transparent whitespace-nowrap uppercase transition-transform duration-75 ease-out" style="-webkit-text-stroke: 2px #ff2a2a;">
+                    XI RPL 2 • DIGITAL CREATORS • XI RPL 2 • DIGITAL CREATORS • XI RPL 2 • DIGITAL CREATORS • XI RPL 2 • DIGITAL CREATORS • XI RPL 2
+                </div>
+            </div>
+
+            <!-- Objek Foto, Pilar Putar, & KANVAS HUJAN DIPINDAH KE SINI -->
+            <div class="scene relative z-10">
+                <div class="wrapper-3d">
+                    
+                    <!-- Kanvas Hujan sekarang cuma sebesar aura di belakang foto -->
+                    <canvas id="hujanTeks"></canvas>
+                    
+                    <img src="Test.png" alt="Objek Utama" class="person-img" onerror="this.src='https://via.placeholder.com/300x400/1a1a1d/ff2a2a?text=Foto+3D'">
+                    <div class="text-ring" id="ring"></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section id="mentor" class="py-20 bg-darkBg">
+    <!-- SECTION MENTOR -->
+    <section id="mentor" class="py-20 bg-darkBg border-t border-gray-900">
         <div class="container mx-auto px-6 max-w-4xl">
             <div class="bg-darkCard border border-gray-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden">
                 <div class="absolute left-0 top-0 bottom-0 w-1 bg-neonRed shadow-[0_0_15px_#ff2a2a]"></div>
-                
                 <div class="w-48 h-48 shrink-0 rounded-2xl overflow-hidden border-2 border-gray-700">
                     <img src="https://via.placeholder.com/200" alt="Mentor" class="w-full h-full object-cover">
                 </div>
-                
                 <div>
                     <span class="bg-neonRed/10 text-neonRed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Our Mentor</span>
                     <h2 class="text-3xl font-bold text-white mt-4 mb-2">Nama Guru Pembimbing, S.Pd.</h2>
@@ -101,39 +196,48 @@
         </div>
     </section>
 
+    <!-- SECTION STUDENT -->
     <section id="student" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-white mb-4">Anggota Kelas</h2>
                 <p class="text-gray-400">Mengenal 32 pejuang masa depan XI RPL 2</p>
-                
                 <div class="mt-8 max-w-md mx-auto relative">
                     <input type="text" placeholder="Cari nama temanmu..." class="w-full bg-darkCard border border-gray-700 text-white rounded-full py-3 px-6 focus:outline-none focus:border-neonRed focus:shadow-[0_0_15px_rgba(255,42,42,0.3)] transition-all">
                     <svg class="w-5 h-5 absolute right-4 top-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                
-                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="studentGrid">
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="0">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="https://via.placeholder.com/150" alt="Siswa" class="w-full h-full object-cover">
+                        <img src="Siswa/NamaSiswa/image.png" alt="Siswa" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-bold text-white text-lg">Nama Siswa</h3>
-                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Role / Jabatan</p>
+                    <h3 class="font-bold text-white text-lg">ASUUU</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Raja HELLO WORLD</p>
                 </div>
                 
-                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group">
-                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors"></div>
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="1">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/Ricard/photo.jpg" alt="Ricard" class="w-full h-full object-cover">
+                    </div>
                     <h3 class="font-bold text-white text-lg">Ricard</h3>
                     <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Full Stack Developer</p>
                 </div>
 
+                <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card" data-student="2">
+                    <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
+                        <img src="Siswa/David/photo.jpg" alt="David" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-white text-lg">David Prasetya Salim</h3>
+                    <p class="text-xs text-neonRed uppercase tracking-wider mt-1">Game Developer</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="album" class="py-20 bg-darkBg">
+    <!-- SECTION ALBUM -->
+    <section id="album" class="py-20 bg-darkBg border-t border-gray-900">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-white mb-4 uppercase tracking-widest">
@@ -141,7 +245,6 @@
                 </h2>
                 <p class="text-gray-400">Kumpulan memori berharga XI RPL 2</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="group relative overflow-hidden rounded-xl h-64 border border-gray-800">
                     <img src="https://via.placeholder.com/400x300" alt="Moment 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
@@ -159,6 +262,7 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="border-t border-gray-800 bg-darkBg py-8">
         <div class="container mx-auto px-6 text-center">
             <p class="text-gray-500 text-sm">
@@ -167,5 +271,207 @@
         </div>
     </footer>
 
+    <!-- Student Modal -->
+    <div id="studentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-darkCard border border-gray-800 rounded-2xl max-w-md w-full p-8 relative shadow-2xl">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-neonRed transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="flex flex-col items-center text-center">
+                <div class="w-40 h-40 bg-gray-800 rounded-xl overflow-hidden border-2 border-neonRed mb-4">
+                    <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <h3 id="modalName" class="text-2xl font-bold text-white mb-2"></h3>
+                <div id="modalBio" class="text-gray-400 leading-relaxed mb-6 max-w-sm"></div>
+                <div class="flex gap-4">
+                    <a id="igLink" href="#" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                    <a id="tiktokLink" href="#" target="_blank" class="flex items-center gap-2 bg-black hover:bg-gray-900 text-white px-4 py-2 rounded-lg transition-all border border-gray-700">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        TikTok
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEMUA SCRIPT JS -->
+    <script>
+        // ------------------------------------
+        // 1. DATA SISWA & MODAL
+        // ------------------------------------
+        const students = [
+            {
+                name: "ASU",
+                role: "Raja Hello World",
+                image: "Siswa/NamaSiswa/image.png",
+                bio: "01010101000010101010101010.",
+                instagram: "https://instagram.com/Sfx",
+                tiktok: "",
+                audio: "Siswa/NamaSiswa/music.mp3"
+            },
+            {
+                name: "Ricard",
+                role: "Full Stack Developer",
+                image: "Siswa/Ricard/photo.jpg",
+                bio: "Bio belum diisi.",
+                instagram: "",
+                tiktok: "",
+                audio: "Siswa/Ricard/music.mp3"
+            },
+            {
+                name: "David Prasetya Salim",
+                role: "Game Developer",
+                image: "Siswa/David/photo.jpg",
+                bio: "Bio belum diisi.",
+                instagram: "",
+                tiktok: "",
+                audio: "Siswa/David/music.mp3"
+            }
+        ];
+
+        let currentAudio = null;
+
+        document.querySelectorAll('.student-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const studentIndex = parseInt(this.dataset.student);
+                const student = students[studentIndex];
+                
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+                
+                document.getElementById('modalName').textContent = student.name;
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = student.image;
+                modalImg.onerror = function() { this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(student.name) + '&background=1a1a1d&color=ff2a2a&size=200'; };
+                document.getElementById('modalBio').textContent = student.bio;
+
+                const igLink = document.getElementById('igLink');
+                const tiktokLink = document.getElementById('tiktokLink');
+                igLink.href = student.instagram || '#';
+                igLink.style.opacity = student.instagram ? '1' : '0.4';
+                igLink.style.pointerEvents = student.instagram ? 'auto' : 'none';
+                tiktokLink.href = student.tiktok || '#';
+                tiktokLink.style.opacity = student.tiktok ? '1' : '0.4';
+                tiktokLink.style.pointerEvents = student.tiktok ? 'auto' : 'none';
+                
+                if (student.audio) {
+                    currentAudio = new Audio(student.audio);
+                    currentAudio.loop = true;
+                    currentAudio.play();
+                }
+                
+                document.getElementById('studentModal').classList.remove('hidden');
+                document.getElementById('studentModal').classList.add('flex');
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('studentModal').classList.add('hidden');
+            document.getElementById('studentModal').classList.remove('flex');
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+        }
+
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document.getElementById('studentModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+
+        // ------------------------------------
+        // 2. SCRIPT TEKS 3D BERPUTAR
+        // ------------------------------------
+        const textToSpinPillar = "SOFTWARE ENGINEERING • XI RPL 2 • DIGITAL CREATORS • "; 
+        const ring = document.getElementById('ring');
+        const radius = 220; 
+        const repeatCount = 3;
+        const fullTextPillar = textToSpinPillar.repeat(repeatCount); 
+        
+        const chars = fullTextPillar.split('');
+        const angleStep = 360 / chars.length;
+
+        chars.forEach((char, i) => {
+            const span = document.createElement('span');
+            span.className = 'char-3d';
+            span.innerText = char;
+            
+            const angle = i * angleStep;
+            span.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`;
+            
+            ring.appendChild(span);
+        });
+
+
+        // ------------------------------------
+        // 3. SCRIPT EFEK HUJAN MATRIX (UKURAN TETAP)
+        // ------------------------------------
+        const canvas = document.getElementById('hujanTeks');
+        const ctx = canvas.getContext('2d');
+
+        // Ukuran di-fix untuk menjadi aura di belakang gambar
+        canvas.width = 500;
+        canvas.height = 500;
+
+        const teksHujanSource = "SOLIDARITAS TINGGI 0110101 •RPL•";
+        const charsHujan = teksHujanSource.split('');
+
+        const fontSizeHujan = 16;
+        const columns = canvas.width / fontSizeHujan; 
+        
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            // Dibuat random posisinya sejak awal agar tidak turun serentak
+            drops[x] = Math.random() * -50; 
+        }
+
+        function drawMatrixHujan() {
+            // Background warna gelap dengan transparansi (efek ekor/trail)
+            ctx.fillStyle = 'rgba(15, 15, 17, 0.15)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff2a2a'; 
+            ctx.font = fontSizeHujan + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charsHujan[Math.floor(Math.random() * charsHujan.length)];
+                ctx.fillText(text, i * fontSizeHujan, drops[i] * fontSizeHujan);
+
+                // Kembalikan ke atas saat sampai bawah
+                if (drops[i] * fontSizeHujan > canvas.height && Math.random() > 0.95) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrixHujan, 33);
+
+
+        // ------------------------------------
+        // 4. SCRIPT EFEK SCROLL TEKS RAKSASA (PARALLAX)
+        // ------------------------------------
+        window.addEventListener('scroll', () => {
+            const wrapper = document.getElementById('section-3d-wrapper');
+            const bgLeft = document.getElementById('bg-text-left');
+            const bgRight = document.getElementById('bg-text-right');
+            
+            if (wrapper && bgLeft && bgRight) {
+                const rect = wrapper.getBoundingClientRect();
+                const centerOffset = (window.innerHeight / 2) - (rect.top + (rect.height / 2));
+                
+                // Teks atas gerak ke kanan, teks bawah gerak ke kiri
+                bgLeft.style.transform = `translateX(${centerOffset * 0.8}px)`;
+                bgRight.style.transform = `translateX(${-centerOffset * 0.8}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
