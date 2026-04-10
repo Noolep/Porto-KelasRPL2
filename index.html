@@ -846,7 +846,7 @@
                     terminalOutput.appendChild(div);
                     let i = 0;
                     
-                    robotAvatar.src = 'response.png';
+                    robotAvatar.src = 'image/response.png';
                     robotStatus.textContent = 'STATUS: TYPING...';
                     robotStatus.classList.remove('text-neonRed', 'border-neonRed');
                     robotStatus.classList.add('text-green-500', 'border-green-500');
@@ -866,7 +866,7 @@
                         
                         if (i >= text.length) {
                             clearInterval(typingInterval);
-                            robotAvatar.src = 'idle.png';
+                            robotAvatar.src = '/image/idle.png';
                             robotStatus.textContent = 'STATUS: IDLE';
                             robotStatus.classList.remove('text-green-500', 'border-green-500');
                             robotStatus.classList.add('text-neonRed', 'border-neonRed');
