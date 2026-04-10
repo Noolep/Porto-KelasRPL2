@@ -20,6 +20,7 @@
     </script>
     
     <style>
+        /* Hujan Teks Matrix */
         #hujanTeks {
             position: absolute;
             top: 50%;
@@ -34,6 +35,7 @@
             mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
         }
 
+        /* 3D Pilar Teks & Area Foto */
         .scene {
             perspective: 800px;
             display: flex;
@@ -47,6 +49,7 @@
             transform: rotateX(-5deg); 
         }
 
+        /* ANIMASI FADE IN KHUSUS FOTO UTAMA */
         @keyframes fadeInPhoto {
             0% { 
                 opacity: 0; 
@@ -100,6 +103,7 @@
             white-space: pre;
         }
         
+        /* Custom scrollbar untuk terminal */
         #terminalOutput::-webkit-scrollbar {
             width: 8px;
         }
@@ -144,7 +148,7 @@
         <div class="container mx-auto px-6 text-center z-10 relative">
             <div class="mb-8 flex justify-center">
                 <div class="w-40 h-40 md:w-56 md:h-56 bg-darkCard border-2 border-neonRed rounded-full shadow-[0_0_40px_rgba(255,42,42,0.4)] flex items-center justify-center overflow-hidden relative group">
-                    <img src="image/rpl.png" alt="Logo XI RPL 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="https://via.placeholder.com/250/1a1a1d/ff2a2a?text=LOGO+KELAS" alt="Logo XI RPL 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 </div>
             </div>
 
@@ -392,7 +396,7 @@
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
                         <img src="Siswa/Soofi/photo.jpg" alt="Soofi" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-bold text-white text-lg">Soofi</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
+                    <h3 class="font-bold text-white text-lg">Shoofi</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
@@ -515,6 +519,7 @@
         </div>
     </footer>
 
+    <!-- MODAL POPUP -->
     <div id="studentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
         <div class="bg-darkCard border border-gray-800 rounded-2xl max-w-md w-full p-8 relative shadow-2xl">
             <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-neonRed transition-colors">
@@ -540,7 +545,11 @@
         </div>
     </div>
 
+    <!-- SEMUA SCRIPT JS (ANTI ERROR + LOGIKA REPELZ + SAPAAN) -->
     <script>
+        // ==========================================
+        // 0. SISTEM AUDIO & FADE (ANTI ERROR)
+        // ==========================================
         const homeAudio = new Audio('home.mp3');
         homeAudio.loop = true;
         homeAudio.volume = 0; 
@@ -618,6 +627,9 @@
             document.body.removeEventListener('click', firstPlay);
         });
 
+        // ==========================================
+        // 1. DATA SISWA & MODAL
+        // ==========================================
         const students = [
             { name: "Abdullah",  fullName: "Abdullah",                  role: "Siswa", image: "Siswa/Abdullah/image.png",  bio: "Bio belum diisi", instagram: "", tiktok: "", audio: "Siswa/Abdullah/music.mp3" },
             { name: "Rofiq",     fullName: "Ahmad Rofiq Al Labib",      role: "Siswa", image: "Siswa/Rofiq/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Rofiq/music.mp3" },
@@ -635,7 +647,7 @@
             { name: "Laela",     fullName: "Laela",                     role: "Siswa", image: "Siswa/Laela/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Laela/music.mp3" },
             { name: "Lulu",      fullName: "Lu Lu'ul Umu Muhazah",      role: "Siswa", image: "Siswa/Lulu/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Lulu/music.mp3" },
             { name: "Natalia",   fullName: "Natalia",                   role: "Siswa", image: "Siswa/Natalia/photo.jpg",   bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Natalia/music.mp3" },
-            { name: "Nia",       fullName: "Nia Naura Fadiyah",         role: "Siswa", image: "Siswa/Nia/photo.jpg",       bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Nia/music.mp3" },
+            { name: "Nia",       fullName: "Nia Naura Fadiyah",         role: "Siswa", image: "Siswa/Nia/photo.jpg",       bio: "Bio belum diisi.", instagram: "https://www.instagram.com/naurafdyhl", tiktok: "", audio: "Siswa/Nia/music.mp3" },
             { name: "Niha",      fullName: "Niha Khoerunnisa",          role: "Siswa", image: "Siswa/Niha/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Niha/music.mp3" },
             { name: "Nikita",    fullName: "Nikita Willy",              role: "Siswa", image: "Siswa/Nikita/photo.jpg",    bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Nikita/music.mp3" },
             { name: "Nova",      fullName: "Nova Dwi Rizky Rudianti",   role: "Siswa", image: "Siswa/Nova/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Nova/music.mp3" },
@@ -646,7 +658,7 @@
             { name: "Milya",     fullName: "Rizki Milya Putri",         role: "Siswa", image: "Siswa/Milya/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Milya/music.mp3" },
             { name: "Safa",      fullName: "Safa Rahayu",               role: "Siswa", image: "Siswa/Safa/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Safa/music.mp3" },
             { name: "Sandy",     fullName: "Sandy",                     role: "Siswa", image: "Siswa/Sandy/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Sandy/music.mp3" },
-            { name: "Soofi",     fullName: "Shoofi Nazifah",            role: "Siswa", image: "Siswa/Soofi/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Soofi/music.mp3" },
+            { name: "Shoofi",     fullName: "Shoofi Nazifah",            role: "Siswa", image: "Siswa/Soofi/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Soofi/music.mp3" },
             { name: "Tomi",      fullName: "Tomi Adiansyah",            role: "Siswa", image: "Siswa/Tomi/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Tomi/music.mp3" },
             { name: "Vega",      fullName: "Vega Ardelia Nurhayati",    role: "Siswa", image: "Siswa/Vega/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Vega/music.mp3" },
             { name: "Wawa",      fullName: "Wawa Maey Rizza",           role: "Siswa", image: "Siswa/Wawa/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "Siswa/Wawa/music.mp3" },
@@ -721,6 +733,9 @@
             if (e.target === this) closeModal();
         });
 
+        // ==========================================
+        // 2. SCRIPT TEKS 3D BERPUTAR
+        // ==========================================
         const textToSpinPillar = "SOFTWARE ENGINEERING • XI RPL 2 • DIGITAL CREATORS • "; 
         const ring = document.getElementById('ring');
         const radius = 220; 
@@ -739,6 +754,9 @@
             ring.appendChild(span);
         });
 
+        // ==========================================
+        // 3. SCRIPT EFEK HUJAN MATRIX
+        // ==========================================
         const canvas = document.getElementById('hujanTeks');
         const ctx = canvas.getContext('2d');
 
@@ -771,6 +789,9 @@
         }
         setInterval(drawMatrixHujan, 33);
 
+        // ==========================================
+        // 4. SCRIPT EFEK SCROLL TEKS RAKSASA
+        // ==========================================
         window.addEventListener('scroll', () => {
             const wrapper = document.getElementById('section-3d-wrapper');
             const bgLeft = document.getElementById('bg-text-left');
@@ -784,6 +805,9 @@
             }
         });
 
+        // ==========================================
+        // 5. SCRIPT CHATBOT / TERMINAL SYSTEM
+        // ==========================================
         const terminalInput = document.getElementById('terminalInput');
         const terminalOutput = document.getElementById('terminalOutput');
         const robotAvatar = document.getElementById('robotAvatar');
@@ -840,6 +864,7 @@
             appendToTerminal(cmd, true);
             let response = "";
 
+            // Variasi pertanyaan untuk memanggil RePelz & Sapaan
             const tanyaBot = ['siapa kamu', 'kamu siapa', 'namamu siapa', 'nama kamu', 'who are you', 'kamu ini apa', 'bot apa ini', 'identitas', 'repelz'];
             const sapaanBot = ['halo', 'hai', 'hello', 'hi ', 'assalamualaikum', 'selamat pagi', 'selamat siang', 'selamat malam', 'pagi', 'siang', 'sore', 'malam', 'ping', 'p'];
 
