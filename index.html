@@ -235,7 +235,7 @@
                 <h2 class="text-4xl font-bold text-white mb-4">Anggota Kelas</h2>
                 <p class="text-gray-400">Mengenal 35 pejuang masa depan XI RPL 2</p>
                 <div class="mt-8 max-w-md mx-auto relative">
-                    <input type="text" placeholder="Cari nama temanmu..." class="w-full bg-darkCard border border-gray-700 text-white rounded-full py-3 px-6 focus:outline-none focus:border-neonRed focus:shadow-[0_0_15px_rgba(255,42,42,0.3)] transition-all">
+                    <input type="text" id="searchStudentInput" placeholder="Cari nama temanmu (Tekan Enter)..." class="w-full bg-darkCard border border-gray-700 text-white rounded-full py-3 px-6 focus:outline-none focus:border-neonRed focus:shadow-[0_0_15px_rgba(255,42,42,0.3)] transition-all">
                     <svg class="w-5 h-5 absolute right-4 top-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
             </div>
@@ -473,6 +473,10 @@
                         <img id="robotAvatar" src="idle.png" alt="AI Assistant" class="w-full h-full object-contain p-2 transition-all duration-300">
                     </div>
                     <span id="robotStatus" class="mt-4 text-neonRed font-mono text-sm border border-neonRed px-3 py-1 rounded-full animate-pulse transition-colors duration-300">STATUS: IDLE</span>
+                    
+                    <div id="terminalStudentImageContainer" class="mt-6 w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden border-2 border-neonRed shadow-[0_0_15px_rgba(255,42,42,0.3)] hidden opacity-0 transition-opacity duration-500">
+                        <img id="terminalStudentImage" src="" alt="Student" class="w-full h-full object-cover">
+                    </div>
                 </div>
 
                 <div class="flex-grow flex flex-col bg-[#050505] border border-gray-700 rounded-lg overflow-hidden font-mono text-sm md:text-base h-96 relative shadow-inner">
@@ -682,59 +686,103 @@
             { name: "Zulfa",     fullName: "Zulfa Koerunisa",           role: "Siswa", image: "image/siswa/Zulfa/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Zulfa/music.mp3" }
         ];
 
+        // FUNGSI UTAMA BUKA MODAL
+        function openStudentModal(student) {
+            fadeAudio(homeAudio, 'out');
+
+            if (currentAudio) {
+                const audioToStop = currentAudio; 
+                currentAudio = null;
+                fadeAudio(audioToStop, 'out', 0, () => {
+                    try { audioToStop.currentTime = 0; } catch(e){}
+                });
+            }
+            
+            document.getElementById('modalName').textContent = student.fullName;
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = student.image;
+            modalImg.onerror = function() { this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(student.fullName) + '&background=1a1a1d&color=ff2a2a&size=200'; };
+            document.getElementById('modalBio').textContent = student.bio;
+
+            const igLink = document.getElementById('igLink');
+            const waLink = document.getElementById('waLink');
+            const tiktokLink = document.getElementById('tiktokLink');
+            
+            igLink.href = student.instagram || '#';
+            igLink.style.opacity = student.instagram ? '1' : '0.4';
+            igLink.style.pointerEvents = student.instagram ? 'auto' : 'none';
+
+            if (student.whatsapp) {
+                waLink.href = student.whatsapp;
+                waLink.classList.remove('hidden');
+                tiktokLink.classList.add('hidden');
+            } else {
+                waLink.classList.add('hidden');
+                tiktokLink.classList.remove('hidden');
+                tiktokLink.href = student.tiktok || '#';
+                tiktokLink.style.opacity = student.tiktok ? '1' : '0.4';
+                tiktokLink.style.pointerEvents = student.tiktok ? 'auto' : 'none';
+            }
+            
+            if (student.audio) {
+                currentAudio = new Audio(student.audio);
+                currentAudio.loop = true;
+                currentAudio.volume = 0;
+                fadeAudio(currentAudio, 'in', 0.8);
+            }
+            
+            document.getElementById('studentModal').classList.remove('hidden');
+            document.getElementById('studentModal').classList.add('flex');
+        }
+
+        // Event Klik pada Kartu
         document.querySelectorAll('.student-card').forEach(card => {
             card.addEventListener('click', function() {
                 const cardName = this.querySelector('h3').textContent.trim();
                 const student = students.find(s => s.name === cardName);
-                if (!student) return;
-                
-                fadeAudio(homeAudio, 'out');
-
-                if (currentAudio) {
-                    const audioToStop = currentAudio; 
-                    currentAudio = null;
-                    fadeAudio(audioToStop, 'out', 0, () => {
-                        try { audioToStop.currentTime = 0; } catch(e){}
-                    });
-                }
-                
-                document.getElementById('modalName').textContent = student.fullName;
-                const modalImg = document.getElementById('modalImage');
-                modalImg.src = student.image;
-                modalImg.onerror = function() { this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(student.fullName) + '&background=1a1a1d&color=ff2a2a&size=200'; };
-                document.getElementById('modalBio').textContent = student.bio;
-
-                const igLink = document.getElementById('igLink');
-                const waLink = document.getElementById('waLink');
-                const tiktokLink = document.getElementById('tiktokLink');
-                
-                igLink.href = student.instagram || '#';
-                igLink.style.opacity = student.instagram ? '1' : '0.4';
-                igLink.style.pointerEvents = student.instagram ? 'auto' : 'none';
-
-                if (student.whatsapp) {
-                    waLink.href = student.whatsapp;
-                    waLink.classList.remove('hidden');
-                    tiktokLink.classList.add('hidden');
-                } else {
-                    waLink.classList.add('hidden');
-                    tiktokLink.classList.remove('hidden');
-                    tiktokLink.href = student.tiktok || '#';
-                    tiktokLink.style.opacity = student.tiktok ? '1' : '0.4';
-                    tiktokLink.style.pointerEvents = student.tiktok ? 'auto' : 'none';
-                }
-                
-                if (student.audio) {
-                    currentAudio = new Audio(student.audio);
-                    currentAudio.loop = true;
-                    currentAudio.volume = 0;
-                    fadeAudio(currentAudio, 'in', 0.8);
-                }
-                
-                document.getElementById('studentModal').classList.remove('hidden');
-                document.getElementById('studentModal').classList.add('flex');
+                if (student) openStudentModal(student);
             });
         });
+
+        // ==========================================
+        // FITUR PENCARIAN MURID (LIVE FILTER & ENTER TO OPEN)
+        // ==========================================
+        const searchStudentInput = document.getElementById('searchStudentInput');
+        if(searchStudentInput) {
+            searchStudentInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                document.querySelectorAll('.student-card').forEach(card => {
+                    const name = card.querySelector('h3').textContent.toLowerCase();
+                    if (name.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            searchStudentInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const query = this.value.toLowerCase().trim();
+                    if (!query) return;
+                    
+                    const matchedStudent = students.find(s => 
+                        s.name.toLowerCase().includes(query) || 
+                        s.fullName.toLowerCase().includes(query)
+                    );
+                    
+                    if (matchedStudent) {
+                        openStudentModal(matchedStudent);
+                        this.value = ''; 
+                        document.querySelectorAll('.student-card').forEach(c => c.style.display = 'block');
+                        this.blur();
+                    } else {
+                        alert("Waduh, data siswa tidak ditemukan di database XI RPL 2!");
+                    }
+                }
+            });
+        }
 
         function closeModal() {
             document.getElementById('studentModal').classList.add('hidden');
@@ -837,6 +885,27 @@
         const terminalOutput = document.getElementById('terminalOutput');
         const robotAvatar = document.getElementById('robotAvatar');
         const robotStatus = document.getElementById('robotStatus');
+        
+        // FOTO DI TERMINAL
+        const termImageContainer = document.getElementById('terminalStudentImageContainer');
+        const termImage = document.getElementById('terminalStudentImage');
+
+        function showTerminalImage(imgSrc) {
+            termImage.src = imgSrc;
+            termImageContainer.classList.remove('hidden');
+            setTimeout(() => {
+                termImageContainer.classList.remove('opacity-0');
+                termImageContainer.classList.add('opacity-100');
+            }, 50);
+        }
+
+        function hideTerminalImage() {
+            termImageContainer.classList.remove('opacity-100');
+            termImageContainer.classList.add('opacity-0');
+            setTimeout(() => {
+                termImageContainer.classList.add('hidden');
+            }, 500);
+        }
 
         function appendToTerminal(text, isUser = false, isTypingEffect = false) {
             const div = document.createElement('div');
@@ -893,14 +962,19 @@
             const sapaanBot = ['halo', 'hai', 'hello', 'hi ', 'assalamualaikum', 'selamat pagi', 'selamat siang', 'selamat malam', 'pagi', 'siang', 'sore', 'malam', 'ping', 'p'];
 
             if (lowerCmd === 'developer') {
+                hideTerminalImage();
                 response = "[ SYSTEM DEVELOPER ]\nNama: Ricard\nPeran: Full Stack Developer XI RPL 2\nStatus: Online, siap ngoding!\n[VISUAL DEVELOPER]\nNama: David\nPeran: Mengedit Visual seperti menambah foto, audio, asset, dll\nStatus: BUSY/SIBUK Sedang input data";
             } else if (lowerCmd === 'sejarah') {
+                hideTerminalImage();
                 response = "[ SEJARAH KELAS ]\nKelas kami Terdiri Dari 35 Rekan rekan yang tangguh,Kami saat ini masih mencari ilmu pengetahuan untuk bekal masa depan kami,kami dari angkatan ke 22 dari SMKN2 Indramayu kami semua memiliki keunggulan masing masing makadari iru kami harus kompak saling membantu satu sama lain saat ini kami masih berproses untuk jadi yang terbaik dari yang terbaik.";
             } else if (lowerCmd === 'guru') {
+                hideTerminalImage();
                 response = "[ DATA GURU PEMBIMBING ]\nNama: Ibu Galih Puja Asmayanto S.pd.\nPeran: Wali kelas XI Rpl2 \nPesan: jangan patah semangat tetap kompak kalian semua punya potensi yang luar biasa";
             } else if (tanyaBot.some(kata => lowerCmd.includes(kata))) {
+                hideTerminalImage();
                 response = "[ SYSTEM AI ]\nNamaku RePelz Gen 0.1 dan developerku adalah David Prasetya Salim.\nAda hal lain yang bisa kubantu? Maaf jika aku tak bisa jawab banyak.";
             } else if (sapaanBot.some(kata => lowerCmd.includes(kata))) {
+                hideTerminalImage();
                 response = "[ SYSTEM AI ]\nHalo! 👋 Aku RePelz Gen 0.1 siap melayani.\nSilakan cari nama temanmu atau ketik perintah seperti 'developer', 'sejarah', atau 'guru'.";
             } else {
                 const matchedStudent = students.find(s => 
@@ -910,7 +984,14 @@
                 
                 if (matchedStudent) {
                     response = `[ DATA SISWA DITEMUKAN ]\nNama Lengkap: ${matchedStudent.fullName}\nRole: ${matchedStudent.role}\nBio: ${matchedStudent.bio}\nInstagram: ${matchedStudent.instagram || '-'}`;
+                    // Tampilkan foto siswa di bawah robot setelah teks mulai ngetik
+                    setTimeout(() => {
+                        let fotoError = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(matchedStudent.fullName) + '&background=1a1a1d&color=ff2a2a&size=200';
+                        termImage.onerror = function() { this.src = fotoError; };
+                        showTerminalImage(matchedStudent.image);
+                    }, 500);
                 } else {
+                    hideTerminalImage();
                     response = `[ ERROR ] Perintah '${cmd}' tidak dikenali atau nama siswa tidak ditemukan.\nKetik: 'developer', 'sejarah', 'guru', atau cari nama siswa.`;
                 }
             }
