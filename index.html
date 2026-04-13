@@ -25,7 +25,7 @@
         /* ========================================= */
         @font-face {
             font-family: 'SlideFontCustom'; 
-            src: url('slidefont.otf') format('opentype'); /* UPDATE KE .otf */
+            src: url('slidefont.otf') format('opentype'); 
             font-weight: normal;
             font-style: normal;
         }
@@ -128,7 +128,17 @@
         }
     </style>
 </head>
-<body class="bg-darkBg text-gray-200 font-sans antialiased overflow-x-hidden">
+<body id="main-body" class="bg-darkBg text-gray-200 font-sans antialiased overflow-x-hidden" style="overflow: hidden;">
+
+    <div id="splash-screen" class="fixed inset-0 z-[100] bg-darkBg flex flex-col justify-center items-start p-8 md:p-24 font-mono text-green-500 overflow-hidden transition-opacity duration-1000 opacity-100">
+        <div class="max-w-2xl text-lg md:text-2xl leading-relaxed">
+            <p id="boot-text-1" class="hidden">> INITIALIZING SYSTEM MAINFRAME...</p>
+            <p id="boot-text-2" class="hidden mt-2">> LOADING ASSETS [||||||||||||||||||||||||] 100%</p>
+            <p id="boot-text-3" class="hidden mt-2">> CONNECTING TO XI RPL 2 DATABASE...</p>
+            <p id="boot-text-4" class="hidden mt-2 text-neonRed font-bold">> ACCESS GRANTED.</p>
+            <p id="boot-text-5" class="hidden mt-6 text-white animate-pulse">Welcome, User.</p>
+        </div>
+    </div>
 
     <header class="fixed w-full top-0 z-50 bg-darkBg/80 backdrop-blur-md border-b border-gray-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -204,7 +214,7 @@
             <div class="scene relative z-10">
                 <div class="wrapper-3d">
                     <canvas id="hujanTeks"></canvas>
-                    <img id="fotoUtamaTest" src="image/Test.png" alt="Objek Utama" class="person-img" onerror="this.src='https://via.placeholder.com/300x400/1a1a1d/ff2a2a?text=Foto+3D'">
+                    <img id="fotoUtamaTest" src="Test.png" alt="Objek Utama" class="person-img" onerror="this.src='https://via.placeholder.com/300x400/1a1a1d/ff2a2a?text=Foto+3D'">
                     <div class="text-ring" id="ring"></div>
                 </div>
             </div>
@@ -375,9 +385,9 @@
                 </div>
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="image/siswa/Ricard/photo.jpeg" alt="Ricard" class="w-full h-full object-cover">
+                        <img src="image/siswa/Ricard/photo.jpg" alt="Ricard" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-bold text-white text-lg">Ricard</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Creator & Administrator</p>
+                    <h3 class="font-bold text-white text-lg">Ricard</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
@@ -399,7 +409,7 @@
                 </div>
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="image/siswa/Sandy/photo.jpeg" alt="Sandy" class="w-full h-full object-cover">
+                        <img src="image/siswa/Sandy/photo.jpg" alt="Sandy" class="w-full h-full object-cover">
                     </div>
                     <h3 class="font-bold text-white text-lg">Sandy</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
@@ -565,6 +575,37 @@
 
     <script>
         // ==========================================
+        // FITUR SPLASH SCREEN BOOTING TERMINAL
+        // ==========================================
+        window.addEventListener('load', () => {
+            const t1 = document.getElementById('boot-text-1');
+            const t2 = document.getElementById('boot-text-2');
+            const t3 = document.getElementById('boot-text-3');
+            const t4 = document.getElementById('boot-text-4');
+            const t5 = document.getElementById('boot-text-5');
+            const splash = document.getElementById('splash-screen');
+            const mainBody = document.getElementById('main-body');
+
+            setTimeout(() => t1.classList.remove('hidden'), 500);
+            setTimeout(() => t2.classList.remove('hidden'), 1500);
+            setTimeout(() => t3.classList.remove('hidden'), 2500);
+            setTimeout(() => {
+                t4.classList.remove('hidden');
+                t5.classList.remove('hidden');
+            }, 3500);
+
+            setTimeout(() => {
+                splash.classList.remove('opacity-100');
+                splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                    // Mengembalikan scroll saat loading selesai
+                    mainBody.style.overflow = ''; 
+                }, 1000); 
+            }, 5000); 
+        });
+
+        // ==========================================
         // 0. SISTEM AUDIO & FADE (ANTI ERROR)
         // ==========================================
         const homeAudio = new Audio('image/home.mp3');
@@ -655,7 +696,7 @@
             { name: "Alwi",      fullName: "Alif Alwiguna Syahir",      role: "Siswa", image: "image/siswa/Alwi/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Alwi/music.mp3" },
             { name: "Anin",      fullName: "Anin Aisyah",               role: "Siswa", image: "image/siswa/Anin/photo.jpeg",      bio: "我爱你", instagram: "https://www.instagram.com/allo0wwrawr?igsh=cmlxYXpnMDFra3A4", tiktok: "", audio: "image/siswa/Anin/music.mp3" },
             { name: "Asih",      fullName: "Asih Nanda",                role: "Siswa", image: "image/siswa/Asih/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Asih/music.mp3" },
-            { name: "David",     fullName: "David Prasetya Salim",      role: "Wakil Kelas", image: "image/siswa/David/photo.jpg",     bio: "Just a 17yo dev with a Made in Heaven mindset. ☁️💻", instagram: "https://www.instagram.com/debbido_ser?igsh=amJpYXludjVueXIx", tiktok: "https://www.tiktok.com/@dheybiddo_sf?_r=1&_t=ZS-95PtdcNs07Y", audio: "image/siswa/David/music.mp3" },
+            { name: "David",     fullName: "David Prasetya Salim",      role: "Co Creator/Visual Management", image: "image/siswa/David/photo.jpg",     bio: "Just a 17yo dev with a Made in Heaven mindset. ☁️💻", instagram: "https://www.instagram.com/debbido_ser?igsh=amJpYXludjVueXIx", tiktok: "https://www.tiktok.com/@dheybiddo_sf?_r=1&_t=ZS-95PtdcNs07Y", audio: "image/siswa/David/music.mp3" },
             { name: "Dehan",     fullName: "Dehan Avrian Fajar",        role: "Siswa", image: "image/siswa/Dehan/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Dehan/music.mp3" },
             { name: "Desika",    fullName: "Desika",                    role: "Ketua Kelas", image: "image/siswa/Desika/photo.jpg",    bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Desika/music.mp3" },
             { name: "Hani",      fullName: "Hanifatul Fitriyah",        role: "Siswa", image: "image/siswa/Hani/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Hani/music.mp3" },
@@ -677,7 +718,7 @@
             { name: "Sandy",     fullName: "Sandy",                     role: "Siswa", image: "image/siswa/Sandy/photo.jpeg",     bio: "Admiral", instagram: "https://www.instagram.com/heyy.sannnnn?igsh=cDB6bWI0bmw1dmRn", tiktok: "tiktok.com/@sanddyyi", audio: "image/siswa/Sandy/music.mp3" },
             { name: "Shoofi",    fullName: "Shoofi Nazhiifah",          role: "Siswa", image: "image/siswa/Soofi/photo.jpg",     bio: "Bio belum diisi.", instagram: "https://www.instagram.com/ursoo.phiaaa?igsh=N3E5aGU5NmR3NHg3", tiktok: "https://www.tiktok.com/@stunsst_?_r=1&_t=ZS-95Pz0aUtEZj", audio: "image/siswa/Soofi/music.mp3" },
             { name: "Tomi",      fullName: "Tomi Adiansyah",            role: "Siswa", image: "image/siswa/Tomi/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Tomi/music.mp3" },
-            { name: "Vega",      fullName: "Vega Ardelia Nurhayati",    role: "Siswa", image: "image/siswa/Vega/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Vega/music.mp3" },
+            { name: "Vega",      fullName: "Vega Ardelia Nurhayati",    role: "Siswa", image: "image/siswa/Vega/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswaa/Vega/music.mp3" },
             { name: "Wawa",      fullName: "Wawa Maey Rizza",           role: "Siswa", image: "image/siswa/Wawa/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Wawa/music.mp3" },
             { name: "Witri",     fullName: "Witri Nurhanah",            role: "Siswa", image: "image/siswa/Witri/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Witri/music.mp3" },
             { name: "Wiwi",      fullName: "Wiwi Agustin",              role: "Siswa", image: "image/siswa/Wiwi/photo.jpeg",     bio: "Nothing.", instagram: "https://www.instagram.com/wiwi4gstnn_?igsh=MTN0cG5xbGRzdHhlbw==", tiktok: "https://www.tiktok.com/@ur.grilxy?is_from_webapp=1&sender_device=pc", audio: "image/siswa/Wiwi/music.mp3" },
@@ -885,7 +926,6 @@
         const robotAvatar = document.getElementById('robotAvatar');
         const robotStatus = document.getElementById('robotStatus');
         
-        // FOTO DI TERMINAL
         const termImageContainer = document.getElementById('terminalStudentImageContainer');
         const termImage = document.getElementById('terminalStudentImage');
 
@@ -982,13 +1022,8 @@
                 );
                 
                 if (matchedStudent) {
-                    response = `[ DATA SISWA DITEMUKAN ]\nNama Lengkap: ${matchedStudent.fullName}\nRole: ${matchedStudent.role}\nBio: ${matchedStudent.bio}\nInstagram: ${matchedStudent.instagram || '-'}`;
-                    // Tampilkan foto siswa di bawah robot setelah teks mulai ngetik
-                    setTimeout(() => {
-                        let fotoError = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(matchedStudent.fullName) + '&background=1a1a1d&color=ff2a2a&size=200';
-                        termImage.onerror = function() { this.src = fotoError; };
-                        showTerminalImage(matchedStudent.image);
-                    }, 500);
+                    response = `[ SYSTEM ] Membuka profil data siswa: ${matchedStudent.fullName}...`;
+                    setTimeout(() => { openStudentModal(matchedStudent); }, 1000);
                 } else {
                     hideTerminalImage();
                     response = `[ ERROR ] Perintah '${cmd}' tidak dikenali atau nama siswa tidak ditemukan.\nKetik: 'developer', 'sejarah', 'guru', atau cari nama siswa.`;
