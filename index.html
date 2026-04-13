@@ -385,7 +385,7 @@
                 </div>
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="image/siswa/Ricard/photo.jpg" alt="Ricard" class="w-full h-full object-cover">
+                        <img src="image/siswa/Ricard/photo.jpeg" alt="Ricard" class="w-full h-full object-cover">
                     </div>
                     <h3 class="font-bold text-white text-lg">Ricard</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
@@ -409,7 +409,7 @@
                 </div>
                 <div class="bg-darkCard border border-gray-800 rounded-xl p-4 text-center hover:-translate-y-2 hover:border-neonRed hover:shadow-[0_10px_20px_rgba(255,42,42,0.15)] transition-all duration-300 group cursor-pointer student-card">
                     <div class="w-24 h-24 mx-auto bg-gray-800 rounded-xl mb-4 overflow-hidden border border-gray-700 group-hover:border-neonRed transition-colors">
-                        <img src="image/siswa/Sandy/photo.jpg" alt="Sandy" class="w-full h-full object-cover">
+                        <img src="image/siswa/Sandy/photo.jpeg" alt="Sandy" class="w-full h-full object-cover">
                     </div>
                     <h3 class="font-bold text-white text-lg">Sandy</h3><p class="text-xs text-neonRed uppercase tracking-wider mt-1">Siswa</p>
                 </div>
@@ -479,7 +479,7 @@
 
                 <div class="flex-shrink-0 flex flex-col items-center justify-start md:w-1/4">
                     <div class="w-32 h-32 md:w-48 md:h-48 rounded-xl overflow-hidden border-2 border-gray-700 relative bg-[#050505] shadow-[0_0_15px_rgba(255,42,42,0.1)]">
-                        <img id="robotAvatar" src="image/idle.png" alt="AI Assistant" class="w-full h-full object-contain p-2 transition-all duration-300">
+                        <img id="robotAvatar" src="idle.png" alt="AI Assistant" class="w-full h-full object-contain p-2 transition-all duration-300">
                     </div>
                     <span id="robotStatus" class="mt-4 text-neonRed font-mono text-sm border border-neonRed px-3 py-1 rounded-full animate-pulse transition-colors duration-300">STATUS: IDLE</span>
                     
@@ -619,7 +619,7 @@
         // ==========================================
         // 0. SISTEM AUDIO & FADE (ANTI ERROR)
         // ==========================================
-        const homeAudio = new Audio('image/home.mp3');
+        const homeAudio = new Audio('home.mp3');
         homeAudio.loop = true;
         homeAudio.volume = 0; 
         let isHomeAudioPlaying = false; 
@@ -967,7 +967,7 @@
                 if (isTypingEffect) {
                     terminalOutput.appendChild(div);
                     let i = 0;
-                    robotAvatar.src = 'image/response.png';
+                    robotAvatar.src = 'idle.png';
                     robotStatus.textContent = 'STATUS: TYPING...';
                     robotStatus.classList.remove('text-neonRed', 'border-neonRed');
                     robotStatus.classList.add('text-green-500', 'border-green-500');
@@ -985,7 +985,7 @@
                         
                         if (i >= text.length) {
                             clearInterval(typingInterval);
-                            robotAvatar.src = 'image/idle.png';
+                            robotAvatar.src = 'idle.png';
                             robotStatus.textContent = 'STATUS: IDLE';
                             robotStatus.classList.remove('text-green-500', 'border-green-500');
                             robotStatus.classList.add('text-neonRed', 'border-neonRed');
