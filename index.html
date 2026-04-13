@@ -214,7 +214,7 @@
             <div class="scene relative z-10">
                 <div class="wrapper-3d">
                     <canvas id="hujanTeks"></canvas>
-                    <img id="fotoUtamaTest" src="Test.png" alt="Objek Utama" class="person-img" onerror="this.src='https://via.placeholder.com/300x400/1a1a1d/ff2a2a?text=Foto+3D'">
+                    <img id="fotoUtamaTest" src="image/Test.png" alt="Objek Utama" class="person-img" onerror="this.src='https://via.placeholder.com/300x400/1a1a1d/ff2a2a?text=Foto+3D'">
                     <div class="text-ring" id="ring"></div>
                 </div>
             </div>
@@ -479,7 +479,7 @@
 
                 <div class="flex-shrink-0 flex flex-col items-center justify-start md:w-1/4">
                     <div class="w-32 h-32 md:w-48 md:h-48 rounded-xl overflow-hidden border-2 border-gray-700 relative bg-[#050505] shadow-[0_0_15px_rgba(255,42,42,0.1)]">
-                        <img id="robotAvatar" src="idle.png" alt="AI Assistant" class="w-full h-full object-contain p-2 transition-all duration-300">
+                        <img id="robotAvatar" src="image/idle.png" alt="AI Assistant" class="w-full h-full object-contain p-2 transition-all duration-300">
                     </div>
                     <span id="robotStatus" class="mt-4 text-neonRed font-mono text-sm border border-neonRed px-3 py-1 rounded-full animate-pulse transition-colors duration-300">STATUS: IDLE</span>
                     
@@ -596,7 +596,7 @@
                     // Logika menghitung persen 0 - 100
                     let progress = 0;
                     let loadInterval = setInterval(() => {
-                        progress += Math.floor(Math.random() * 5) + 2; // Nambah random 2-6% biar natural
+                        progress += Math.floor(Math.random() * 5) + 2; 
                         
                         if(progress >= 100) {
                             progress = 100;
@@ -619,11 +619,10 @@
                         
                         if(progressText) progressText.innerText = progress;
                         if(progressBar) {
-                            // Membuat text bar [|||||.....]
                             const barCount = Math.floor(progress / 4); // max 25 bar
                             progressBar.innerText = '|'.repeat(barCount) + '.'.repeat(25 - barCount);
                         }
-                    }, 40); // Kecepatan ngitung
+                    }, 40);
                 }, 1500);
             }
         });
@@ -641,7 +640,7 @@
         // ==========================================
         // 0. SISTEM AUDIO & FADE (ANTI ERROR)
         // ==========================================
-        const homeAudio = new Audio('home.mp3');
+        const homeAudio = new Audio('image/home.mp3');
         homeAudio.loop = true;
         homeAudio.volume = 0; 
         let isHomeAudioPlaying = false; 
@@ -989,7 +988,8 @@
                 if (isTypingEffect) {
                     terminalOutput.appendChild(div);
                     let i = 0;
-                    robotAvatar.src = 'response.png';
+                    // FIX: Path robotAvatar ke folder image/
+                    robotAvatar.src = 'image/response.png';
                     robotStatus.textContent = 'STATUS: TYPING...';
                     robotStatus.classList.remove('text-neonRed', 'border-neonRed');
                     robotStatus.classList.add('text-green-500', 'border-green-500');
@@ -1007,7 +1007,8 @@
                         
                         if (i >= text.length) {
                             clearInterval(typingInterval);
-                            robotAvatar.src = 'idle.png';
+                            // FIX: Path robotAvatar ke folder image/
+                            robotAvatar.src = 'image/idle.png';
                             robotStatus.textContent = 'STATUS: IDLE';
                             robotStatus.classList.remove('text-green-500', 'border-green-500');
                             robotStatus.classList.add('text-neonRed', 'border-neonRed');
