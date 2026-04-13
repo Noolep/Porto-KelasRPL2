@@ -1,0 +1,102 @@
+#hujanTeks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(-20px);
+  width: 450px;
+  height: 450px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.scene {
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-5deg);
+}
+
+@keyframes fadeInPhoto {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.person-img {
+  position: relative;
+  height: 500px;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(255, 42, 42, 0.4));
+}
+
+#fotoUtamaTest {
+  animation: fadeInPhoto 2s ease-out forwards;
+  opacity: 0;
+}
+
+.text-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  animation: spinRing 15s linear infinite;
+  z-index: 1;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  pointer-events: none;
+}
+
+@keyframes spinRing {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(360deg);
+  }
+}
+
+.char-3d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff2a2a;
+  text-shadow: 0 0 10px #ff2a2a;
+  white-space: pre;
+}
+
+#terminalOutput::-webkit-scrollbar {
+  width: 8px;
+}
+#terminalOutput::-webkit-scrollbar-track {
+  background: #050505;
+}
+#terminalOutput::-webkit-scrollbar-thumb {
+  background: #ff2a2a;
+  border-radius: 4px;
+}
