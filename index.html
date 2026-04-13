@@ -575,9 +575,9 @@
 
     <script>
         // ==========================================
-        // FITUR SPLASH SCREEN BOOTING TERMINAL
+        // FITUR SPLASH SCREEN BOOTING TERMINAL (FIX GITHUB)
         // ==========================================
-        window.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const t1 = document.getElementById('boot-text-1');
             const t2 = document.getElementById('boot-text-2');
             const t3 = document.getElementById('boot-text-3');
@@ -586,24 +586,35 @@
             const splash = document.getElementById('splash-screen');
             const mainBody = document.getElementById('main-body');
 
-            setTimeout(() => t1.classList.remove('hidden'), 500);
-            setTimeout(() => t2.classList.remove('hidden'), 1500);
-            setTimeout(() => t3.classList.remove('hidden'), 2500);
-            setTimeout(() => {
-                t4.classList.remove('hidden');
-                t5.classList.remove('hidden');
-            }, 3500);
-
-            setTimeout(() => {
-                splash.classList.remove('opacity-100');
-                splash.classList.add('opacity-0');
+            if (splash) {
+                setTimeout(() => t1 && t1.classList.remove('hidden'), 500);
+                setTimeout(() => t2 && t2.classList.remove('hidden'), 1500);
+                setTimeout(() => t3 && t3.classList.remove('hidden'), 2500);
                 setTimeout(() => {
-                    splash.classList.add('hidden');
-                    // Mengembalikan scroll saat loading selesai
-                    mainBody.style.overflow = ''; 
-                }, 1000); 
-            }, 5000); 
+                    if(t4) t4.classList.remove('hidden');
+                    if(t5) t5.classList.remove('hidden');
+                }, 3500);
+
+                setTimeout(() => {
+                    splash.classList.remove('opacity-100');
+                    splash.classList.add('opacity-0');
+                    setTimeout(() => {
+                        splash.classList.add('hidden');
+                        if(mainBody) mainBody.style.overflow = ''; 
+                    }, 1000); 
+                }, 5000); 
+            }
         });
+
+        // SAFETY FALLBACK: Jaga-jaga kalau ada script nyangkut, 7 detik langsung buka
+        setTimeout(() => {
+            const splash = document.getElementById('splash-screen');
+            const mainBody = document.getElementById('main-body');
+            if (splash && !splash.classList.contains('hidden')) {
+                splash.classList.add('hidden');
+                if(mainBody) mainBody.style.overflow = '';
+            }
+        }, 7000);
 
         // ==========================================
         // 0. SISTEM AUDIO & FADE (ANTI ERROR)
@@ -718,7 +729,7 @@
             { name: "Sandy",     fullName: "Sandy",                     role: "Siswa", image: "image/siswa/Sandy/photo.jpeg",     bio: "Admiral", instagram: "https://www.instagram.com/heyy.sannnnn?igsh=cDB6bWI0bmw1dmRn", tiktok: "tiktok.com/@sanddyyi", audio: "image/siswa/Sandy/music.mp3" },
             { name: "Shoofi",    fullName: "Shoofi Nazhiifah",          role: "Siswa", image: "image/siswa/Soofi/photo.jpg",     bio: "Bio belum diisi.", instagram: "https://www.instagram.com/ursoo.phiaaa?igsh=N3E5aGU5NmR3NHg3", tiktok: "https://www.tiktok.com/@stunsst_?_r=1&_t=ZS-95Pz0aUtEZj", audio: "image/siswa/Soofi/music.mp3" },
             { name: "Tomi",      fullName: "Tomi Adiansyah",            role: "Siswa", image: "image/siswa/Tomi/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Tomi/music.mp3" },
-            { name: "Vega",      fullName: "Vega Ardelia Nurhayati",    role: "Siswa", image: "image/siswa/Vega/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswaa/Vega/music.mp3" },
+            { name: "Vega",      fullName: "Vega Ardelia Nurhayati",    role: "Siswa", image: "image/siswa/Vega/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Vega/music.mp3" },
             { name: "Wawa",      fullName: "Wawa Maey Rizza",           role: "Siswa", image: "image/siswa/Wawa/photo.jpg",      bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Wawa/music.mp3" },
             { name: "Witri",     fullName: "Witri Nurhanah",            role: "Siswa", image: "image/siswa/Witri/photo.jpg",     bio: "Bio belum diisi.", instagram: "", tiktok: "", audio: "image/siswa/Witri/music.mp3" },
             { name: "Wiwi",      fullName: "Wiwi Agustin",              role: "Siswa", image: "image/siswa/Wiwi/photo.jpeg",     bio: "Nothing.", instagram: "https://www.instagram.com/wiwi4gstnn_?igsh=MTN0cG5xbGRzdHhlbw==", tiktok: "https://www.tiktok.com/@ur.grilxy?is_from_webapp=1&sender_device=pc", audio: "image/siswa/Wiwi/music.mp3" },
@@ -1022,8 +1033,12 @@
                 );
                 
                 if (matchedStudent) {
-                    response = `[ SYSTEM ] Membuka profil data siswa: ${matchedStudent.fullName}...`;
-                    setTimeout(() => { openStudentModal(matchedStudent); }, 1000);
+                    response = `[ DATA SISWA DITEMUKAN ]\nNama Lengkap: ${matchedStudent.fullName}\nRole: ${matchedStudent.role}\nBio: ${matchedStudent.bio}\nInstagram: ${matchedStudent.instagram || '-'}`;
+                    setTimeout(() => {
+                        let fotoError = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(matchedStudent.fullName) + '&background=1a1a1d&color=ff2a2a&size=200';
+                        termImage.onerror = function() { this.src = fotoError; };
+                        showTerminalImage(matchedStudent.image);
+                    }, 500);
                 } else {
                     hideTerminalImage();
                     response = `[ ERROR ] Perintah '${cmd}' tidak dikenali atau nama siswa tidak ditemukan.\nKetik: 'developer', 'sejarah', 'guru', atau cari nama siswa.`;
